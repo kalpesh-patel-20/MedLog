@@ -29,6 +29,20 @@
   /* Adjust as needed */
 }
 
+.blood-search-container div #bloodGroup {
+  width: 200px;
+  padding: 12px;
+  margin-bottom: 20px;
+  margin-left: 15px;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  background-color: #1d2531;
+  color: #fff;
+  border: 1px solid #ddd;
+  outline: none;
+}
+
 .blood-search-container label {
   margin-left: 15px;
   margin-bottom: 10px;

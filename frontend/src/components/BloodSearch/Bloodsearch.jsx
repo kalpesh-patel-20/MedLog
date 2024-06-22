@@ -2,10 +2,6 @@ import React, { useRef, useState } from "react";
 import "./Bloodsearch.css";
 
 function BloodSearch() {
-  // const [bloodGroup, setBloodGroup] = useState("");
-  // const [taluka, setTaluka] = useState("");
-  // const [district, setDistrict] = useState("");
-  // const [searchResults, setSearchResults] = useState([]);
 
   const [searchResults, setSearchResults] = useState([]);
 
@@ -14,9 +10,6 @@ function BloodSearch() {
   const district = useRef();
 
   const handleSearch = async (e) => {
-    // const bloodGroup = blood.current.value;
-    // const taluka = tal.current.value;
-    // const district = dist.current.value;
     e.preventDefault();
 
     const queryParams = {
@@ -37,29 +30,11 @@ function BloodSearch() {
           console.log("Result:", res);
           setSearchResults(res.Information);
         });
-      // if (response.ok) {
-      //   const data = await response.json();
-      //   setSearchResults(data);
-      // } else {
-      //   console.error("Blood Search failed:", response.statusText);
-      // }
+     
     } catch (error) {
       console.error("Blood Search error:", error);
     }
 
-    // const dummyPatients = [
-    //   { name: "John Doe", mobileNumber: "1234567890" },
-    //   { name: "Jane Doe", mobileNumber: "9876543210" },
-    // ];
-
-    // const filteredPatients = dummyPatients.filter(
-    //   (patient) =>
-    //     patient.bloodGroup === bloodGroup &&
-    //     patient.taluka === taluka &&
-    //     patient.district === district
-    // );
-
-    // setPatients(filteredPatients);
   };
 
   return (
@@ -68,21 +43,24 @@ function BloodSearch() {
         <h2>Find Blood</h2>
         <form onSubmit={handleSearch}>
           <div>
-            <label>Blood Group:</label>
-            <input
-              ref={bloodGroup}
-              type="text"
-              // value={bloodGroup}
-              // onChange={(e) => setBloodGroup(e.target.value)}
-            />
+            <label for="bloodGroup">Select your blood group:</label>
+            <select ref={bloodGroup} id="bloodGroup" name="bloodGroup" required>
+              <option value="A+">A+</option>
+              <option value="A-">A-</option>
+              <option value="B+">B+</option>
+              <option value="B-">B-</option>
+              <option value="AB+">AB+</option>
+              <option value="AB-">AB-</option>
+              <option value="O+">O+</option>
+              <option value="O-">O-</option>
+            </select>
           </div>
           <div>
             <label>Taluka:</label>
             <input
               ref={taluka}
               type="text"
-              // value={taluka}
-              // onChange={(e) => setTaluka(e.target.value)}
+              required
             />
           </div>
           <div>
@@ -90,8 +68,7 @@ function BloodSearch() {
             <input
               ref={district}
               type="text"
-              // value={district}
-              // onChange={(e) => setDistrict(e.target.value)}
+              required
             />
           </div>
           <button type="submit">Search</button>

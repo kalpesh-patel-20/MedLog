@@ -1,4 +1,4 @@
-import React from "react";
+import React, { createContext, useReducer } from "react";
 import "./App.css";
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import LoginForm from "./components/Login/LoginForm";
@@ -13,42 +13,27 @@ import Admin from "./components/AdminDashboard/Admin";
 import Patient from "./components/PatientDashboard/Patient";
 import Hospital from "./components/HospitalDashboard/Hospital";
 import Logout from "./components/Logout/Logout";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { initialState, reducer } from "./reducer/UseReducer";
 
-// const UserComponent = ({ role }) => {
-//   console.log(role);
-//   if (role === "Admin") {
-//     return <Admin />;
-//   } else if (role === "Patient") {
-//     return <Patient />;
-//   } else {
-//     return <Hospital />;
-//   }
-// };
+export const UserContext = createContext();
 
 const App = () => {
+  const [state, dispatch] = useReducer(reducer, initialState);
+
   return (
+      
     <div className="App">
+      <UserContext.Provider value={{state, dispatch}}>
       <Router>
         <Nav />
         <Routes>
           <Route path="/" element={<Home />} />
-          {/* <Route path="/profile" element={<Admin />} /> */}
+          <Route path="/profile" element={<Admin />} />
           <Route path="/patientprofile" element={<Patient />} />
           <Route path="/adminprofile" element={<Admin />} />
           <Route path="/hospitalprofile" element={<Hospital />} />
-          {/* <Route
-            path="/profile"
-            element={
-              role == "Patient" ? (
-                <Patient />
-              ) : role == "Admin" ? (
-                <Admin />
-              ) : (
-                <Hospital />
-              )
-            }
-          /> */}
-          {/* <Route path="/profile" element={<UserComponent role={role} />} /> */}
           <Route path="/bloodsearch" element={<Bloodsearch />} />
           <Route path="/aboutus" element={<AboutUs />} />
           <Route path="/login" element={<LoginForm />} />
@@ -56,6 +41,8 @@ const App = () => {
           <Route path="/logout" element={<Logout />} />
         </Routes>
       </Router>
+      </UserContext.Provider>
+      <ToastContainer />
       <Footer />
     </div>
   );

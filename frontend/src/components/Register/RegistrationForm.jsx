@@ -1,6 +1,8 @@
 import React, { useRef } from "react";
 import "./RegistrationForm.css";
 import { useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function RegistrationForm() {
   const [user, setUser] = useState({
@@ -29,6 +31,40 @@ function RegistrationForm() {
         .then((res) => res.json())
         .then((res) => {
           console.log(res);
+          if (res.message === "user already registered") {
+            toast.error("User have already registered", {
+              position: "top-right",
+              autoClose: 3000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+            });
+          } else if (res.message === "Invalid Aadhar Number") {
+            toast.error("Invalid Aadhar Number", {
+              position: "top-right",
+              autoClose: 3000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+            });
+          } else if (res.message === "email send successfully") {
+            toast.error("OTP Send On Email", {
+              position: "top-right",
+              autoClose: 3000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+            });
+          }
         });
     } catch (error) {
       console.log("OTP Validation Error: ", error);
@@ -51,9 +87,29 @@ function RegistrationForm() {
         .then((res) => res.json())
         .then((res) => {
           console.log(res);
+          toast.success("Registered Successfully!", {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
         });
     } catch (error) {
       console.log("Registration Error: ", error);
+      toast.error("Error while Registering, Please try again later!", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
     }
   };
 
@@ -102,14 +158,17 @@ function RegistrationForm() {
           </div>
 
           <div className="input-box">
-            <label htmlFor="bloodGroup">Blood Group</label>
-            <input
-              type="text"
-              id="bloodGroup"
-              name="bloodGroup"
-              placeholder="Enter Blood group"
-              required
-            />
+            <label for="bloodGroup">Select your blood group:</label>
+            <select id="bloodGroup" name="bloodGroup" required>
+              <option value="A+">A+</option>
+              <option value="A-">A-</option>
+              <option value="B+">B+</option>
+              <option value="B-">B-</option>
+              <option value="AB+">AB+</option>
+              <option value="AB-">AB-</option>
+              <option value="O+">O+</option>
+              <option value="O-">O-</option>
+            </select>
           </div>
           <div className="input-box">
             <label htmlFor="otp">OTP</label>

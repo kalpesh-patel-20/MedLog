@@ -187,7 +187,7 @@
 #email input {
   width: 50px;
 }
-/* :where(.gender input, .gender label) */
+
 .input_field :where(#ln, #hn, #p, #cp, #cn, #o, #t, #d, #s) {
   width: 100%;
   padding: 8px 10px 9px 35px;
@@ -213,18 +213,6 @@
   -ms-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
 }
-/* #hospitalregister input {
-    width: 100%;
-    padding: 8px 10px 9px 35px;
-    height: 35px;
-    border: 1px solid #cccccc;
-    box-sizing: border-box;
-    outline: none;
-    -webkit-transition: all 0.3s ease-in-out;
-    -moz-transition: all 0.3s ease-in-out;
-    -ms-transition: all 0.3s ease-in-out;
-    transition: all 0.3s ease-in-out;
-} */
 
 #hospitalregister input:hover {
   background: #fafafa;
@@ -240,9 +228,7 @@
 
 #hospitalregister input[type="submit"] {
   background: #f5ba1a;
-  /* margin-left: auto; */
   height: 50px;
-  /* line-height: 35px; */
   width: 100%;
   border: none;
   outline: none;
@@ -269,9 +255,7 @@
 }
 #otpbt {
   background: #f5ba1a;
-  /* margin-left: auto; */
   height: 35px;
-  /* line-height: 35px; */
   width: 50%;
   border: none;
   outline: none;

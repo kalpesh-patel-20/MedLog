@@ -1,15 +1,20 @@
-import React, { useRef } from "react";
+import React, { useRef , useContext} from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./LoginForm.css";
 import LoginIcon from "../../assets/LoginIcon.jpg";
 import OTPForm from "../Otp/OTPForm";
 import RegistrationForm from "../Register/RegistrationForm";
-// import { useHistory } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { UserContext } from "../../App";
 
 let role;
 let user;
 
 const LoginForm = () => {
+
+  const {state, dispatch} = useContext(UserContext)
+
   const email = useRef(); // Define email ref here
   const password = useRef();
   const navigate = useNavigate();
@@ -21,17 +26,6 @@ const LoginForm = () => {
     try {
       const emailValue = email.current.value;
       const passwordValue = password.current.value;
-      // const response = await fetch(
-      //   `http://localhost:1805/api/v1/Patient-Tracker/login`,
-      //   {
-      //     method: "POST",
-      //     headers: {
-      //       "Content-Type": "application/json",
-      //     },
-      //     body: JSON.stringify({ email: emailValue, password: passwordValue }),
-      //     credentials: "include",
-      //   }
-      // );
       let response;
       fetch("/api/v1/Patient-Tracker/login", {
         method: "POST",
@@ -44,22 +38,76 @@ const LoginForm = () => {
         .then((res) => res.json())
         .then((res) => {
           console.log("Result:", res);
+          // console.log(role);
+          console.log(res.success);
+          if (res.success === false) {
+            toast.error("Please enter correct credentials", {
+              position: "top-right",
+              autoClose: 3000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+            });
+          }
           user = res.user;
           role = res.user.role;
-          console.log(role);
           if (role === "Admin") {
+            dispatch({type:"USER", payload:true})
+            toast.success("Logged in Successfully!", {
+              position: "top-right",
+              autoClose: 3000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+            });
             navigate("/adminprofile");
           } else if (role === "Patient") {
+            dispatch({ type: "USER", payload: true });
+            toast.success("Logged in Successfully!", {
+              position: "top-right",
+              autoClose: 3000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+            });
             navigate("/patientprofile");
-          } else {
+          } else if (role === "Hospital") {
+            dispatch({ type: "USER", payload: true });
+            toast.success("Logged in Successfully!", {
+              position: "top-right",
+              autoClose: 3000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+            });
             navigate("/hospitalprofile");
           }
-          // navigate("/profile");
         });
-      // navigate("/profile");
-      console.log("Logged in successfully");
-      // console.log(await response.json());
+
+      // console.log("Logged in successfully");
     } catch (error) {
+      toast.error("Please enter correct credentials", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
       console.log("Login Error: ", error);
     }
   };
@@ -121,5 +169,5 @@ const LoginForm = () => {
   );
 };
 
-export { user };
+export { role };
 export default LoginForm;

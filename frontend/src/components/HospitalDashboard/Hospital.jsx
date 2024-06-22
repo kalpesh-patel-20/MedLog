@@ -1,17 +1,17 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./Hospital.css";
 import Profile from "../../assets/Profile.png";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 let data;
 function Hospital() {
   const [userDetails, setUserDetails] = useState(null);
-  // // const [medicaldata, setMedicaldata] = useState(null);
 
   const [searchResults, setSearchResults] = useState([]);
 
   const aadharNumber = useRef();
-    const fileRef = useRef();
-
+  const fileRef = useRef();
 
   const handleSearch = async (e) => {
     e.preventDefault();
@@ -40,7 +40,7 @@ function Hospital() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const data = new FormData(e.target);    
+    const data = new FormData(e.target);
     try {
       // let response;
       console.log(data);
@@ -51,9 +51,31 @@ function Hospital() {
         .then((res) => res.json())
         .then((res) => {
           console.log(res);
+          if (res.success === true) {
+            toast.success("Record Updated Successfully", {
+              position: "top-right",
+              autoClose: 3000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+            });
+          }
         });
     } catch (error) {
       console.log("Record Insert Time Error: ", error);
+      toast.error("Error while updating record", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
     }
   };
 
@@ -87,9 +109,6 @@ function Hospital() {
             <div id="profile">
               <img src={Profile} alt="profile" />
             </div>
-            {/* <div className="p_name">
-              <span id="pn">Kalpesh Patel</span>
-            </div> */}
           </div>
           <ul className="sidebar-list">
             <li className="sidebar-list-item">
@@ -159,8 +178,6 @@ function Hospital() {
               name="aadharNumber"
               type="text"
               placeholder="Enter Aadhar Number"
-              // value={aadharNumber}
-              // onChange={handleInputChange}
               className="aadharinput"
             />
             <button className="aadharsearchButton" onClick={handleSearch}>
@@ -202,12 +219,7 @@ function Hospital() {
             <div className="form-group-add">
               <label htmlFor="pdfFile">PDF File:</label>
 
-              <input
-                ref={fileRef}
-                type="file"
-                id="pdfFile"
-                name="pdfFile"
-              />
+              <input ref={fileRef} type="file" id="pdfFile" name="pdfFile" />
             </div>
             <button type="submit" className="submit-button">
               Add Record
@@ -251,57 +263,27 @@ function Hospital() {
                         </div>
                         <div className="product-cell price">
                           <span>
-                            <svg
-                              id="download"
-                              xmlns="http://www.w3.org/2000/svg"
-                              width="16"
-                              height="16"
-                              fill="currentColor"
-                              className="bi bi-download"
-                              viewBox="0 0 16 16"
-                            >
-                              <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5" />
-                              <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708z" />
-                            </svg>
+                            {/* <span>{disease.fileurl}</span> */}
+                            <a href={disease.fileurl} download>
+                              <svg
+                                id="download"
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="16"
+                                height="16"
+                                fill="currentColor"
+                                class="bi bi-download"
+                                viewBox="0 0 16 16"
+                              >
+                                <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5" />
+                                <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708z" />
+                              </svg>
+                            </a>
                           </span>
                         </div>
                       </div>
                     ))}
                 </div>
               ))}
-
-            {/* <div className="products-row">
-              <div className="product-cell image">
-                <span>Cancer</span>
-              </div>
-              <div className="product-cell category">
-                <span>2024-01-03</span>
-              </div>
-              <div className="product-cell sales">
-                <span>Dr. Smith</span>
-              </div>
-              <div className="product-cell stock">
-                <span>General Hospital</span>
-              </div>
-              <div className="product-cell price">
-                <span>
-                  <svg
-                    id="download"
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    fill="currentColor"
-                    class="bi bi-download"
-                    viewBox="0 0 16 16"
-                  >
-                    <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5" />
-                    <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708z" />
-                  </svg>
-                </span>
-              </div>
-            </div> */}
-
-            {/* Other products-row elements go here */}
           </div>
         </div>
       </div>

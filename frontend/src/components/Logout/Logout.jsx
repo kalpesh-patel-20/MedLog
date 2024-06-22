@@ -1,8 +1,13 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
+import React, {useContext} from "react";
+import { useNavigate} from "react-router-dom";
 import "./Logout.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { UserContext } from "../../App";
 
 const Logout = () => {
+  const { state, dispatch } = useContext(UserContext);
+
   const navigate = useNavigate();
 
   const handleLogout = async (e) => {
@@ -19,6 +24,17 @@ const Logout = () => {
       })
         .then((res) => res.json())
         .then((res) => {
+          dispatch({ type: "USER", payload: false });
+          toast.success("Logout Successfully", {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
           navigate("/login");
         });
       console.log("Logout from account");

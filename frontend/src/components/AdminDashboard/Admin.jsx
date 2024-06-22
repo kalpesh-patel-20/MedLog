@@ -2,6 +2,8 @@ import React from "react";
 import "./Admin.css";
 import Profile from "../../assets/Profile.png";
 import { useRef } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Admin() {
   const emailRef = useRef();
@@ -22,9 +24,31 @@ function Admin() {
         .then((res) => res.json())
         .then((res) => {
           console.log(res);
+          if (res.success === true) {
+            toast.success("OTP send", {
+              position: "top-right",
+              autoClose: 3000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+            });
+          }
         });
     } catch (error) {
       console.log("OTP Validation Error: ", error);
+      toast.error("OTP send", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
     }
   };
 
@@ -43,9 +67,31 @@ function Admin() {
         .then((res) => res.json())
         .then((res) => {
           console.log(res);
+          if (res.success === true) {
+            toast.success("Hospital Registered Successfully", {
+              position: "top-right",
+              autoClose: 3000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+            });
+          }
         });
     } catch (error) {
       console.log("Registration Error: ", error);
+      toast.error("Error while registering", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
     }
   };
 
