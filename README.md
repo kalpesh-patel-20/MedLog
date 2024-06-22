@@ -1,4 +1,4 @@
-# MEDLOG Project
+# MEDLOG: Your Comprehensive Medical Record Keeper
 
 ## Overview
 
@@ -53,7 +53,6 @@ MEDLOG/
 ├── .gitignore
 └── README.md
 ```
-
 
 ## Contact
 
