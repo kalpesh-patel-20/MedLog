@@ -1,17 +1,17 @@
-import React, { useContext } from "react";
-import { Link, NavLink } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { NavLink } from "react-router-dom";
 import "./Nav.css";
 import Logout from "../Logout/Logout";
 import { UserContext } from "../../App";
-import { role } from "../Login/LoginForm";
 
 function Nav() {
   const { state } = useContext(UserContext);
+  const [menuActive, setMenuActive] = useState(false);
 
   const RenderMenu = () => {
     if (state) {
       let profileRoute;
-      switch (role) {
+      switch (state.role) {
         case "Patient":
           profileRoute = "/patientprofile";
           break;
@@ -31,6 +31,7 @@ function Nav() {
             <NavLink
               to="/"
               className={({ isActive }) => (isActive ? "active" : "")}
+              onClick={() => setMenuActive(false)}
             >
               Home
             </NavLink>
@@ -39,6 +40,7 @@ function Nav() {
             <NavLink
               to={profileRoute}
               className={({ isActive }) => (isActive ? "active" : "")}
+              onClick={() => setMenuActive(false)}
             >
               PROFILE
             </NavLink>
@@ -47,6 +49,7 @@ function Nav() {
             <NavLink
               to="/bloodsearch"
               className={({ isActive }) => (isActive ? "active" : "")}
+              onClick={() => setMenuActive(false)}
             >
               BLOOD SEARCH
             </NavLink>
@@ -55,6 +58,7 @@ function Nav() {
             <NavLink
               to="/aboutus"
               className={({ isActive }) => (isActive ? "active" : "")}
+              onClick={() => setMenuActive(false)}
             >
               ABOUT US
             </NavLink>
@@ -69,6 +73,7 @@ function Nav() {
             <NavLink
               to="/"
               className={({ isActive }) => (isActive ? "active" : "")}
+              onClick={() => setMenuActive(false)}
             >
               Home
             </NavLink>
@@ -77,6 +82,7 @@ function Nav() {
             <NavLink
               to="/aboutus"
               className={({ isActive }) => (isActive ? "active" : "")}
+              onClick={() => setMenuActive(false)}
             >
               ABOUT US
             </NavLink>
@@ -85,6 +91,7 @@ function Nav() {
             <NavLink
               to="/login"
               className={({ isActive }) => (isActive ? "active" : "")}
+              onClick={() => setMenuActive(false)}
             >
               LOGIN
             </NavLink>
@@ -93,6 +100,7 @@ function Nav() {
             <NavLink
               to="/register"
               className={({ isActive }) => (isActive ? "active" : "")}
+              onClick={() => setMenuActive(false)}
             >
               REGISTER
             </NavLink>
@@ -103,11 +111,20 @@ function Nav() {
   };
 
   return (
-    <div className="navigation">
-      <ul>
-        <RenderMenu />
-      </ul>
-    </div>
+    <nav className="navigation">
+      <div className="topnav">
+        <div className={`menu-links ${menuActive ? "active" : ""}`}>
+          <ul>
+            <RenderMenu />
+          </ul>
+        </div>
+        <div className="hamburger" onClick={() => setMenuActive(!menuActive)}>
+          <div className={`bar ${menuActive ? "animate" : ""}`}></div>
+          <div className={`bar ${menuActive ? "animate" : ""}`}></div>
+          <div className={`bar ${menuActive ? "animate" : ""}`}></div>
+        </div>
+      </div>
+    </nav>
   );
 }
 
