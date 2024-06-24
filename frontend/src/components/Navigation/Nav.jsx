@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import "./Nav.css";
 import Logout from "../Logout/Logout";
 import { UserContext } from "../../App";
+import { role } from "../Login/LoginForm";
 
 function Nav() {
   const { state } = useContext(UserContext);
@@ -11,7 +12,7 @@ function Nav() {
   const RenderMenu = () => {
     if (state) {
       let profileRoute;
-      switch (state.role) {
+      switch (role) {
         case "Patient":
           profileRoute = "/patientprofile";
           break;
