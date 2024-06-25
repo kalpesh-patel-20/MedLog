@@ -1,3 +1,4 @@
+/* General styles */
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap");
 
 :root {
@@ -30,16 +31,11 @@
   --filter-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
-.app-icon {
-  background-color: black;
-}
-
+/* Application container */
 .app-container {
   border-radius: 4px;
   width: 100%;
-  height: 100%;
-  max-height: 100%;
-  max-width: 1280px;
+  height: 100vh; /* Full viewport height */
   display: flex;
   overflow: hidden;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
@@ -47,21 +43,9 @@
   margin: 0 auto;
 }
 
-.app-container {
-  border-radius: 4px;
-  width: 100%;
-  height: 100vh;
-  max-height: 100%;
-  max-width: 1280px;
-  display: flex;
-  overflow: hidden;
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-  max-width: 2000px;
-  margin: 0 auto;
-}
-
+/* Sidebar */
 .sidebar {
-  flex-basis: 290px;
+  flex-basis: 290px; /* Initial width */
   max-width: 300px;
   flex-shrink: 0;
   background-color: var(--sidebar);
@@ -69,14 +53,13 @@
   flex-direction: column;
 }
 
+/* Sidebar header */
 .sidebar-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 16px;
-  /* background-color: #1d283c; */
   background-color: var(--sidebar);
-  /* box-shadow: 0 3px 8px #090f1f; */
 }
 
 .sidebar-header .app-icon img {
@@ -97,6 +80,7 @@
   margin-top: -10px;
 }
 
+/* Sidebar list */
 .sidebar-list {
   display: flex;
   flex-direction: column;
@@ -115,11 +99,9 @@
 
 .sidebar-list-items a {
   display: flex;
-  /* flex-direction: column; */
   align-items: center;
   width: 100%;
   padding: 10px 16px;
-  /* color: var(--sidebar-link); */
   text-decoration: none;
   font-size: 14px;
   line-height: 24px;
@@ -131,23 +113,6 @@
   margin-right: 8px;
 }
 
-/* .sidebar-list-item:hover {
-  background-color: var(--sidebar-hover-link);
-}
-
-.sidebar-list-item.active {
-  background-color: var(--sidebar-active-link);
-} */
-
-/* .sidebar-list-item.active:before {
-  content: "";
-  position: absolute;
-  right: 0;
-  background-color: var(--action-color);
-  height: 100%;
-  width: 4px;
-} */
-
 #pn {
   color: var(--app-content-main-color);
   padding-left: 80px;
@@ -156,42 +121,7 @@
   margin: 0;
 }
 
-@media screen and (max-width: 1024px) {
-  .sidebar {
-    display: none;
-  }
-}
-
-.mode-switch {
-  background-color: transparent;
-  border: none;
-  padding: 0;
-  color: var(--app-content-main-color);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-left: auto;
-  margin-right: 8px;
-  cursor: pointer;
-}
-
-.mode-switch .moon {
-  fill: var(--app-content-main-color);
-}
-
-.mode-switch.active .moon {
-  fill: none;
-}
-
-.app-icon {
-  color: var(--sidebar-main-color);
-}
-
-.app-icon svg {
-  width: 24px;
-  height: 24px;
-}
-
+/* App content */
 .app-content {
   padding: 16px;
   background-color: var(--app-bg);
@@ -200,8 +130,10 @@
   max-height: 100%;
   display: flex;
   flex-direction: column;
+  overflow: auto; /* Enable scrolling */
 }
 
+/* App content header */
 .app-content-header {
   display: flex;
   align-items: center;
@@ -213,51 +145,44 @@
   color: var(--app-content-main-color);
   font-size: 24px;
   line-height: 32px;
-  /* margin: 0; */
   margin-bottom: 18px;
 }
 
-.products-area-wrapper {
+/* Products area wrapper */
+.disease-wrapper {
   width: 100%;
-  max-height: calc(100vh - 200px);
-  margin-bottom: 40px; 
-  overflow: auto;
+  max-height: calc(100vh - 200px); /* Adjust height for scrolling content */
+  margin-bottom: 40px;
+  overflow: auto; /* Enable scrolling */
   padding: 0 4px;
 }
 
-.tableView .products-header {
+/* Table view */
+.tableView .disease-header {
+  width: 100%;
   display: flex;
   align-items: center;
   border-radius: 4px;
   background-color: var(--app-content-secondary-color);
   position: sticky;
   top: 0;
-  z-index: 1; 
+  z-index: 1;
 }
 
-.product-cell {
-  z-index: 0;
-}
-
-.tableView .products-row {
+.tableView .disease-row {
   display: flex;
   align-items: center;
   border-radius: 4px;
-  /* change */
   position: sticky;
   top: 0;
 }
 
-.tableView .products-row:hover {
+.tableView .disease-row:hover {
   box-shadow: var(--filter-shadow);
   background-color: var(--app-content-secondary-color);
 }
 
-/* .tableView .products-row .cell-more-button {
-  display: none;
-} */
-
-.tableView .product-cell {
+.tableView .disease-cell {
   flex: 1;
   padding: 8px 16px;
   color: var(--app-content-main-color);
@@ -288,6 +213,94 @@
 #download {
   height: 20px;
 }
+
 #download:hover {
   cursor: pointer;
+}
+
+/* Media queries for responsive design */
+@media screen and (max-width: 1024px) {
+  .sidebar {
+    display: none; /* Hide sidebar on medium screens */
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .app-container {
+    flex-direction: column; /* Stack sidebar and content vertically */
+  }
+
+  .sidebar {
+    display: flex;
+    flex-basis: auto;
+    flex-shrink: 1;
+    order: 1; /* Move sidebar below the content */
+    max-width: 100%; /* Ensure sidebar occupies full width */
+    background-color: var(--sidebar); /* Retain sidebar color */
+    padding-bottom: 16px; /* Add padding at the bottom */
+  }
+
+  .app-content {
+    order: 2; /* Move content below the sidebar */
+    padding: 8px; /* Reduce padding */
+    max-height: none; /* Allow content to expand */
+  }
+
+  .app-content-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .app-content-headerText {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+
+  .disease-wrapper {
+    max-height: none; /* Allow table to expand */
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .sidebar-header img {
+    margin-left: -50px;
+    margin-top: -15px;
+    margin-bottom: 30px;
+    width: 200px;
+  }
+
+  .sidebar-list {
+    margin-top: -190px;
+    margin-left: 150px;
+  }
+
+  #pn {
+    width: 100%;
+    margin-top: 5px;
+  }
+
+  .sidebar-list-items {
+    width: 100%;
+    margin-left: -10px;
+    margin-top: -35px;
+    margin-bottom: 20px;
+  }
+  .app-content-headerText {
+    font-size: 18px;
+    margin-bottom: 8px;
+  }
+
+  .tableView .disease-cell {
+    font-size: 14px;
+    padding: 4px 8px;
+  }
+
+  .disease-wrapper {
+    max-height: calc(100vh - 100px); /* Adjust height for smaller screens */
+  }
+
+  #pn {
+    font-size: 20px;
+    padding-left: 40px;
+  }
 }

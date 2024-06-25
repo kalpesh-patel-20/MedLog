@@ -1,27 +1,27 @@
 @charset "utf-8";
 
 [class*="fontawesome-"]:before {
-  font-family: 'FontAwesome', sans-serif;
+  font-family: "FontAwesome", sans-serif;
 }
 
 body {
   background: #2c3338;
   color: #606468;
-  font: 87.5%/1.5em 'Open Sans', sans-serif;
+  font: 87.5%/1.5em "Open Sans", sans-serif;
   margin: 0;
 }
 
-#icon{
-    margin-left: 35px;
-    margin-bottom: 15px;
-    height: 250px;
-    width: 250px;
-    border-radius: 50%;
+#icon {
+  margin-left: 35px;
+  margin-bottom: 15px;
+  height: 250px;
+  width: 250px;
+  border-radius: 50%;
 }
 
 input {
   border: none;
-  font-family: 'Open Sans', Arial, sans-serif;
+  font-family: "Open Sans", Arial, sans-serif;
   font-size: 16px;
   line-height: 1.5em;
   padding: 0;
@@ -32,13 +32,15 @@ p {
   line-height: 1.5em;
 }
 
-svg{
+svg {
   margin-top: 10px;
   height: 30px;
   width: 30px;
 }
 
-after { clear: both; }
+after {
+  clear: both;
+}
 
 #login {
   margin: 50px auto;
@@ -104,26 +106,26 @@ after { clear: both; }
 }
 
 #formFooter {
-    background-color: #282e33;
-    height: 5px;
-    width: 315px;
-    margin-top: 10px;
-    margin-left: 5px;
-    padding-bottom: 25px;
-    text-align: center;
-    border-radius: 0 0 10px 10px;
-    border-radius: 0 0 10px 10px;
+  background-color: #282e33;
+  height: 5px;
+  width: 315px;
+  margin-top: 10px;
+  margin-left: 5px;
+  padding-bottom: 25px;
+  text-align: center;
+  border-radius: 0 0 10px 10px;
+  border-radius: 0 0 10px 10px;
 }
 
-#formFooter a{
-    color: #b5cd60;
+#formFooter a {
+  color: #b5cd60;
 }
 
-#formFooter a:hover{
-    color: #ff0000;
+#formFooter a:hover {
+  color: #ff0000;
 }
 
-#registerhere{
+#registerhere {
   margin-top: 10px;
   text-align: center;
   font-size: medium;
@@ -148,8 +150,15 @@ after { clear: both; }
 }
 
 @media (max-width: 480px) {
-  #login form{
+  #login form {
+    margin-left: 90px;
     width: 200px;
+    margin: auto;
+  }
+
+
+  #registerhere{
+    margin-left: -50px;
   }
 
   #login {
@@ -160,11 +169,13 @@ after { clear: both; }
   #icon {
     width: 150px;
     height: 150px;
+    margin-left: 25px;
   }
 
   #login form input[type="text"],
   #login form input[type="password"] {
-    width: calc(100% - 100px);
+    width: calc(100% - 86px);
+    /* margin-right: 0px; */
   }
 
   #login form input[type="submit"] {

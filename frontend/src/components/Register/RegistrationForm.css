@@ -14,6 +14,7 @@
 svg {
   margin-top: 3px;
 }
+
 .details {
   margin-top: 25px;
   margin-left: 380px;
@@ -171,6 +172,24 @@ svg {
   background: #121a25;
 }
 
+/* Media Queries for Mobile View */
+@media screen and (max-width: 768px) {
+  #box1 {
+    margin-left: 0px;
+    margin-top: 10px;
+    height: 50px;
+    width: 50px;
+    font-size: 2rem;
+  }
+
+  .details {
+    margin-left: 15px;
+    margin-right: 0px;
+    padding: 20px;
+    width: 300px;
+  }
+}
+
 @media screen and (max-width: 500px) {
   #infoform .column {
     flex-wrap: wrap;
@@ -178,5 +197,34 @@ svg {
 
   #infoform :where(.gender-option, .gender) {
     row-gap: 15px;
+  }
+
+  .details {
+    padding: 15px;
+  }
+
+  #box1 {
+    height: 40px;
+    width: 40px;
+    font-size: 1.5rem;
+  }
+
+  .details box {
+    font-size: 1.2rem;
+  }
+
+  .input-box #bloodGroup,
+  #infoform :where(.input-box input, .select-box, .input-box #bloodGroup) {
+    padding-bottom: 2px;
+    padding-top: 2px;
+    width: 280px;
+    height: 37px;
+    padding-left: 4px;
+    font-size: 0.9rem;
+  }
+
+  #generatebtn, #infoform #formbtn {
+    padding: 7px 0;
+    font-size: 0.9rem;
   }
 }

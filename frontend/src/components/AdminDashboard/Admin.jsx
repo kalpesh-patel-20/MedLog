@@ -103,9 +103,9 @@ function Admin() {
             <img src={Profile} alt="profile" />
           </div>
         </div>
-        <div className="info">ADMIN</div>
+        <div className="info" id="admin-name">ADMIN</div>
         <ul className="sidebar-list ">
-          <li className="sidebar-list-item">
+          <li className="sidebar-list-item" id="admin">
             <a href="#">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -125,7 +125,7 @@ function Admin() {
               <span>Dashboard</span>
             </a>
           </li>
-          <li className="sidebar-list-item active">
+          <li className="sidebar-list-item active" id="admin">
             <a href="#">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -143,8 +143,8 @@ function Admin() {
         </ul>
       </div>
 
-      <div className="app-content">
-        <div className="heading">Hospital Registration</div>
+      <div className="app-content" id="admin-app-content">
+        <div className="heading" id="admin-heading">Hospital Registration</div>
         <form id="hospitalregister" onSubmit={handleSubmit}>
           <div className="input_field">
             <input

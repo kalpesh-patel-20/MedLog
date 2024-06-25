@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import "./Patient.css";
 import Profile from "../../assets/Profile.png";
+import { format } from "date-fns"; 
 
 let data;
+
 function Patient() {
   const [userDetails, setUserDetails] = useState(null);
 
@@ -18,9 +20,6 @@ function Patient() {
         );
         if (response.ok) {
           data = await response.json();
-          // url =
-          console.log(data.patientInformation);
-          // console.log(data.patientInformation.MedicalData);
           setUserDetails(data.patientInformation);
         } else {
           console.error("Failed to fetch user details:", response.statusText);
@@ -32,6 +31,11 @@ function Patient() {
 
     fetchUserDetails();
   }, []);
+
+  // Function to format date and time
+  const formatDate = (dateString) => {
+    return format(new Date(dateString), "dd MMM yyyy HH:mm:ss");
+  };
 
   return (
     <div>
@@ -53,7 +57,7 @@ function Patient() {
                   width="16"
                   height="16"
                   fill="currentColor"
-                  class="bi bi-circle-fill"
+                  className="bi bi-circle-fill"
                   viewBox="0 0 16 16"
                 >
                   <circle cx="8" cy="8" r="8" />
@@ -70,7 +74,7 @@ function Patient() {
                   width="16"
                   height="16"
                   fill="currentColor"
-                  class="bi bi-circle-fill"
+                  className="bi bi-circle-fill"
                   viewBox="0 0 16 16"
                 >
                   <circle cx="8" cy="8" r="8" />
@@ -88,19 +92,19 @@ function Patient() {
             <h1 className="app-content-headerText">Patient History</h1>
           </div>
 
-          <div className="products-area-wrapper tableView">
-            <div className="products-header">
-              <div className="product-cell image">Disease</div>
-              <div className="product-cell category">
+          <div className="disease-wrapper tableView">
+            <div className="disease-header">
+              <div className="disease-cell image">Disease</div>
+              <div className="disease-cell category">
                 Date<button className="sort-button"></button>
               </div>
-              <div className="product-cell status-cell">
+              <div className="disease-cell status-cell">
                 Diagnosed By Doctor<button className="sort-button"></button>
               </div>
-              <div className="product-cell sales">
+              <div className="disease-cell sales">
                 Diagnosed By Hospital<button className="sort-button"></button>
               </div>
-              <div className="product-cell stock">
+              <div className="disease-cell stock">
                 Download File<button className="sort-button"></button>
               </div>
             </div>
@@ -108,20 +112,21 @@ function Patient() {
             {userDetails &&
               userDetails.MedicalData &&
               userDetails.MedicalData.map((disease, index) => (
-                <div className="products-row" key={index}>
-                  <div className="product-cell image">
+                <div className="disease-row" key={index}>
+                  <div className="disease-cell image">
                     <span>{disease.diseaseDescription}</span>
                   </div>
-                  <div className="product-cell category">
-                    <span>{disease.Date}</span>
+                  <div className="disease-cell category">
+                    <span>{formatDate(disease.Date)}</span>{" "}
+                    {/* Format Date field */}
                   </div>
-                  <div className="product-cell sales">
+                  <div className="disease-cell sales">
                     <span>{disease.diagonsedByDoctor}</span>
                   </div>
-                  <div className="product-cell stock">
+                  <div className="disease-cell stock">
                     <span>{disease.diagonsedByHospital}</span>
                   </div>
-                  <div className="product-cell price">
+                  <div className="disease-cell price">
                     <span>
                       <a href={disease.fileurl} download>
                         <svg
@@ -130,7 +135,7 @@ function Patient() {
                           width="16"
                           height="16"
                           fill="currentColor"
-                          class="bi bi-download"
+                          className="bi bi-download"
                           viewBox="0 0 16 16"
                         >
                           <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5" />

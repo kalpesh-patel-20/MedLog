@@ -3,6 +3,7 @@ import "./Hospital.css";
 import Profile from "../../assets/Profile.png";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { format } from "date-fns";
 
 let data;
 function Hospital() {
@@ -100,6 +101,11 @@ function Hospital() {
 
     fetchUserDetails();
   }, []);
+
+  // Function to format date and time
+  const formatDate = (dateString) => {
+    return format(new Date(dateString), "dd MMM yyyy HH:mm:ss");
+  };
 
   return (
     <div>
@@ -226,19 +232,19 @@ function Hospital() {
             </button>
           </form>
 
-          <div className="products-area-wrapper tableView">
-            <div className="products-header">
-              <div className="product-cell image">Disease</div>
-              <div className="product-cell category">
+          <div className="disease-wrapper tableView">
+            <div className="disease-header">
+              <div className="disease-cell image">Disease</div>
+              <div className="disease-cell category">
                 Date<button className="sort-button"></button>
               </div>
-              <div className="product-cell status-cell">
+              <div className="disease-cell status-cell">
                 Diagnosed By Doctor<button className="sort-button"></button>
               </div>
-              <div className="product-cell sales">
+              <div className="disease-cell sales">
                 Diagnosed By Hospital<button className="sort-button"></button>
               </div>
-              <div className="product-cell stock">
+              <div className="disease-cell stock">
                 Attach File<button className="sort-button"></button>
               </div>
             </div>
@@ -248,20 +254,20 @@ function Hospital() {
                 <div key={patientIndex}>
                   {patient.MedicalData &&
                     patient.MedicalData.map((disease, diseaseIndex) => (
-                      <div className="products-row" key={diseaseIndex}>
-                        <div className="product-cell image">
+                      <div className="disease-row" key={diseaseIndex}>
+                        <div className="disease-cell image">
                           <span>{disease.diseaseDescription}</span>
                         </div>
-                        <div className="product-cell category">
-                          <span>{disease.Date}</span>
+                        <div className="disease-cell category">
+                          <span>{formatDate(disease.Date)}</span>{" "}
                         </div>
-                        <div className="product-cell sales">
+                        <div className="disease-cell sales">
                           <span>{disease.diagonsedByDoctor}</span>
                         </div>
-                        <div className="product-cell stock">
+                        <div className="disease-cell stock">
                           <span>{disease.diagonsedByHospital}</span>
                         </div>
-                        <div className="product-cell price">
+                        <div className="disease-cell price">
                           <span>
                             {/* <span>{disease.fileurl}</span> */}
                             <a href={disease.fileurl} download>

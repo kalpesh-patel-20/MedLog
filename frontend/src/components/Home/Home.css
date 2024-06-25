@@ -88,3 +88,34 @@
     transform: translateY(-10px);
   }
 }
+
+/* Media Queries for Responsive Design */
+@media screen and (max-width: 1200px) {
+  .home h1 {
+    font-size: 6rem;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .home h1 {
+    font-size: 5rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .home h1 {
+    font-size: 4rem;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .home h1 {
+    font-size: 3rem;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .home h1 {
+    font-size: 2rem;
+  }
+}
